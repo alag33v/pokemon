@@ -42,7 +42,7 @@ export const getNextUrl = str => ({
 });
 
 // Thunks
-const loadingPokemon = async data => {
+const getPokemonItem = async data => {
   const pokemonData = await Promise.all(data.map(async pokemon => {
     const pokemonRecord = await pokemonsAPI.fetchPokemonItem(pokemon.url);
 
@@ -58,7 +58,7 @@ export const getPokemons = url => async dispatch => {
   dispatch(getPrevUrl(data.previous));
   dispatch(getNextUrl(data.next));
 
-  const pokemon = await loadingPokemon(data.results);
+  const pokemon = await getPokemonItem(data.results);
 
   dispatch(addPokemons(pokemon));
 };

@@ -25,7 +25,10 @@ export const App = () => {
       <h1>Here</h1>
       <ul>
         {pokemons.map(pokemon => (
-          <li key={pokemon.name}>{pokemon.name}</li>
+          <li key={pokemon.id}>
+            <div>{pokemon.name}</div>
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          </li>
         ))}
       </ul>
       {prevUrl && <button type="button" onClick={onPrevUrl}>PREV</button>}
