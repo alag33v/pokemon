@@ -1,38 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import logo from './assets/images/logo.png';
+import { Home } from './pages';
+import { GlobalStyle } from './styles/GlobalStyle';
+import { StyledApp } from './styles/StyledApp';
 
-import { getPokemons } from './redux/ducks/pokemonsDucks';
-
-export const App = () => {
-  const { pokemons, nextUrl, prevUrl } = useSelector(state => state.pokemons);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPokemons('https://pokeapi.co/api/v2/pokemon'));
-  }, [dispatch]);
-
-  const onPrevUrl = () => {
-    dispatch(getPokemons(prevUrl));
-  };
-
-  const onNextUrl = () => {
-    dispatch(getPokemons(nextUrl));
-  };
-
-  return (
-    <div>
-      <h1>Here</h1>
-      <ul>
-        {pokemons.map(pokemon => (
-          <li key={pokemon.id}>
-            <div>{pokemon.name}</div>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-          </li>
-        ))}
-      </ul>
-      {prevUrl && <button type="button" onClick={onPrevUrl}>PREV</button>}
-      {nextUrl && <button type="button" onClick={onNextUrl}>NEXT</button>}
-    </div>
-  );
-};
+export const App = () => (
+  <>
+    <GlobalStyle />
+    <StyledApp>
+      <img className="logo" src={logo} alt="Logo" />
+      <Home />
+    </StyledApp>
+  </>
+);
