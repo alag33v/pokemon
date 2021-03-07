@@ -1,7 +1,15 @@
 import React from 'react';
 
-export const App = () => (
-  <div>
-    <h1>React!</h1>
-  </div>
-);
+import { useSelector, useDispatch } from 'react-redux';
+
+export const App = () => {
+  const { nextUrl, prevUrl } = useSelector(state => state.pokemons);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h1>Here</h1>
+    </div>
+
+  );
+};
