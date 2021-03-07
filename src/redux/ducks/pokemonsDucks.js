@@ -4,12 +4,15 @@ import { pokemonsAPI } from '../../api/api';
 const ADD_POKEMONS = 'pokemons/ADD_POKEMONS';
 const NEXT_URL = 'pokemons/NEXT_URL';
 const PREV_URL = 'pokemons/PREV_URL';
+const SHOW_LOADER = 'pokemons/SHOW_LOADER';
+const HIDE_LOADER = 'pokemons/HIDE_LOADER';
 
 // Reducer
 const initialState = {
   pokemons: [],
   prevUrl: '',
   nextUrl: '',
+  isLoading: false,
 };
 
 export const pokemonsReducer = (state = initialState, action) => {
@@ -20,6 +23,10 @@ export const pokemonsReducer = (state = initialState, action) => {
       return { ...state, prevUrl: action.payload };
     case NEXT_URL:
       return { ...state, nextUrl: action.payload };
+    case SHOW_LOADER:
+      return { ...state, isLoading: true };
+    case HIDE_LOADER:
+      return { ...state, isLoading: false };
     default:
       return state;
   }
@@ -41,6 +48,14 @@ export const getNextUrl = str => ({
   payload: str,
 });
 
+const showLoader = () => ({
+  type: SHOW_LOADER,
+});
+
+const hideLoader = () => ({
+  type: HIDE_LOADER,
+});
+
 // Thunks
 const getPokemonItem = async data => {
   const pokemonData = await Promise.all(data.map(async pokemon => {
@@ -53,6 +68,8 @@ const getPokemonItem = async data => {
 };
 
 export const getPokemons = url => async dispatch => {
+  dispatch(showLoader());
+
   const data = await pokemonsAPI.fetchPokemons(url);
 
   dispatch(getPrevUrl(data.previous));
@@ -61,4 +78,6 @@ export const getPokemons = url => async dispatch => {
   const pokemon = await getPokemonItem(data.results);
 
   dispatch(addPokemons(pokemon));
+
+  dispatch(hideLoader());
 };

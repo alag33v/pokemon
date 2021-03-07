@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { getPokemons } from '../redux/ducks/pokemonsDucks';
+import { StyledLoader } from '../styles/components/StyledLoader';
 import { StyledHome } from '../styles/pages/StyledHome';
 
 const Home = () => {
-  const { pokemons, nextUrl, prevUrl } = useSelector(state => state.pokemons);
+  const {
+    pokemons, nextUrl, prevUrl, isLoading,
+  } = useSelector(state => state.pokemons);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -26,6 +29,8 @@ const Home = () => {
   const onNextUrl = () => {
     dispatch(getPokemons(nextUrl));
   };
+
+  if (isLoading) return <StyledLoader />;
 
   return (
     <StyledHome>
