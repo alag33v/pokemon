@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { getPokemons } from '../redux/ducks/pokemonsDucks';
 import { StyledHome } from '../styles/pages/StyledHome';
@@ -8,10 +9,15 @@ import { StyledHome } from '../styles/pages/StyledHome';
 const Home = () => {
   const { pokemons, nextUrl, prevUrl } = useSelector(state => state.pokemons);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getPokemons('https://pokeapi.co/api/v2/pokemon'));
   }, [dispatch]);
+
+  const onDetails = id => {
+    history.push(`/pokemon/${id}`);
+  };
 
   const onPrevUrl = () => {
     dispatch(getPokemons(prevUrl));
@@ -27,7 +33,11 @@ const Home = () => {
         {pokemons.map(pokemon => (
           <li className="item" key={pokemon.id}>
             <div className="name">{pokemon.name}</div>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <img
+              src={pokemon.sprites.front_default}
+              alt={pokemon.name}
+              onClick={() => onDetails(pokemon.id)}
+            />
           </li>
         ))}
       </ul>
