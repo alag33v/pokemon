@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { approachHome } from '../assets/animations/animations';
 import { getPokemons } from '../redux/ducks/pokemonsDucks';
 import { StyledLoader } from '../styles/components/StyledLoader';
 import { StyledHome } from '../styles/pages/StyledHome';
@@ -33,7 +34,7 @@ const Home = () => {
   if (isLoading) return <StyledLoader />;
 
   return (
-    <StyledHome>
+    <StyledHome variants={approachHome} initial="hidden" animate="show">
       <ul className="list">
         {pokemons.map(pokemon => (
           <li className="item" onClick={() => onDetails(pokemon.id)} key={pokemon.id}>

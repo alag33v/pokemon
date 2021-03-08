@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { motion } from 'framer-motion';
 import { BiArrowBack } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { approachItem, approachInfo } from '../assets/animations/animations';
 import { StyledPokemonItem } from '../styles/components/StyledPokemonItem';
 
 const PokemonItem = ({ match }) => {
@@ -21,7 +23,7 @@ const PokemonItem = ({ match }) => {
   return (
     <StyledPokemonItem>
       <div className="wrapper">
-        <div className="wrapper__left">
+        <motion.div className="wrapper__left" variants={approachInfo} initial="hidden" animate="show">
           <p className="height">
             Height:
             {' '}
@@ -46,11 +48,11 @@ const PokemonItem = ({ match }) => {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="wrapper__right">
+        </motion.div>
+        <motion.div className="wrapper__right" variants={approachItem} initial="hidden" animate="show">
           <h2 className="name">{pokemon.name}</h2>
           <img className="image" src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
-        </div>
+        </motion.div>
       </div>
       <BiArrowBack className="back" onClick={onComeBack} />
     </StyledPokemonItem>
