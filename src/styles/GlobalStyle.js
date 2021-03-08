@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   
   html {
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   *,
   *:before,
@@ -21,5 +22,6 @@ export const GlobalStyle = createGlobalStyle`
     color: #eee;
     background-color: #080808;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 `;
