@@ -22,6 +22,16 @@ const PokemonItem = ({ match }) => {
     <StyledPokemonItem>
       <div className="wrapper">
         <div className="wrapper__left">
+          <p className="height">
+            Height:
+            {' '}
+            {pokemon.height}
+          </p>
+          <p className="weight">
+            Weight:
+            {' '}
+            {pokemon.weight}
+          </p>
           <h3 className="title">Abilities:</h3>
           <ul>
             {pokemon.abilities.map(ability => (
@@ -36,16 +46,6 @@ const PokemonItem = ({ match }) => {
               </li>
             ))}
           </ul>
-          <p className="height">
-            Height:
-            {' '}
-            {pokemon.height}
-          </p>
-          <p className="weight">
-            Weight:
-            {' '}
-            {pokemon.weight}
-          </p>
         </div>
         <div className="wrapper__right">
           <h2 className="name">{pokemon.name}</h2>

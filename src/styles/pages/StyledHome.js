@@ -4,28 +4,36 @@ export const StyledHome = styled.div`
   .list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding: 0;
-    cursor: pointer;
+    margin: 0;
   }
 
   .item {
+    flex-grow: 1;
     list-style: none;
     margin: 0 20px 20px;
     padding: 10px 20px;
     border: 1px solid #ccc;
     border-radius: 20px;
+    width: 175px;
+    cursor: pointer;
 
     .name {
       font-size: 18px;
       text-align: center;
       text-transform: capitalize;
     }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   .btn__wrapper {
     display: flex;
     justify-content: center;
+    margin: 30px 0 50px;
 
     button {
       font-size: 14px;

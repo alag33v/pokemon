@@ -36,12 +36,11 @@ const Home = () => {
     <StyledHome>
       <ul className="list">
         {pokemons.map(pokemon => (
-          <li className="item" key={pokemon.id}>
+          <li className="item" onClick={() => onDetails(pokemon.id)} key={pokemon.id}>
             <div className="name">{pokemon.name}</div>
             <img
               src={pokemon.sprites.front_default}
               alt={pokemon.name}
-              onClick={() => onDetails(pokemon.id)}
             />
           </li>
         ))}

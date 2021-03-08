@@ -7,6 +7,10 @@ export const StyledPokemonItem = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 750px) {
+      flex-direction: column-reverse;
+    }
   }
 
   .wrapper__left {
@@ -14,12 +18,27 @@ export const StyledPokemonItem = styled.div`
     border: 1px solid #ccc;
     padding: 20px 50px 10px 50px;
     border-radius: 20px;
+    width: 225px;
+
+    @media (max-width: 750px) {
+      margin: 50px 0;
+    }
+  }
+
+  .height,
+  .weight {
+    font-size: 18px;
+    margin: 10px 0;
   }
 
   .title {
     font-size: 22px;
     text-align: center;
-    margin: 0;
+    margin: 5px 0;
+
+    &:first-of-type {
+      margin-top: 15px;
+    }
   }
 
   ul {
@@ -29,19 +48,17 @@ export const StyledPokemonItem = styled.div`
 
   li {
     font-size: 18px;
-    text-align: center;
     text-transform: capitalize;
     list-style: none;
     margin-bottom: 5px;
   }
 
-  .height,
-  .weight {
-    font-size: 18px;
-  }
-
   .wrapper__right {
     margin-left: 50px;
+
+    @media (max-width: 750px) {
+      margin: 25px 0 0;
+    }
   }
 
   .name {
@@ -51,8 +68,9 @@ export const StyledPokemonItem = styled.div`
   }
 
   .image {
-    margin: 0 auto;
+    max-width: 100%;
     display: block;
+    margin: 0 auto;
   }
 
   .back {
