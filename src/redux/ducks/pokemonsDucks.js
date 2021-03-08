@@ -86,7 +86,7 @@ const hideLoader = () => ({
 // Thunks
 const getPokemonItem = async data => {
   const pokemonData = await Promise.all(data.map(async pokemon => {
-    const pokemonRecord = await pokemonsAPI.fetchPokemonItem(pokemon.url);
+    const pokemonRecord = await pokemonsAPI.fetchPokemonItem(pokemon.url.slice(0, -1));
 
     return pokemonRecord;
   }));
