@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Switch, Route, Link,
+} from 'react-router-dom';
 
 import logo from './assets/images/logo.png';
 import { PokemonItem } from './components';
@@ -12,7 +14,9 @@ export const App = () => (
   <Router>
     <GlobalStyle />
     <StyledApp>
-      <img className="logo" src={logo} alt="Logo" />
+      <Link className="link" to="/pokemon">
+        <img className="logo" src={logo} alt="Logo" />
+      </Link>
       <Switch>
         <Route exact path="/pokemon" component={Home} />
         <Route exact path="/pokemon/:id" component={PokemonItem} />
