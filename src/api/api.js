@@ -11,4 +11,9 @@ export const pokemonsAPI = {
 
     return response.data;
   },
+  async fetchAbilityInfo(url) {
+    const response = await axios.get(url);
+
+    return response.data;
+  },
 };

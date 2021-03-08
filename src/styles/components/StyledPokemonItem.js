@@ -53,6 +53,15 @@ export const StyledPokemonItem = styled.div`
     margin-bottom: 5px;
   }
 
+  .ability {
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #e3bd22;
+    }
+  }
+
   .wrapper__right {
     margin-left: 50px;
 

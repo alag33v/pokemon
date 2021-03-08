@@ -4,6 +4,9 @@ import { pokemonsAPI } from '../../api/api';
 const ADD_POKEMONS = 'pokemons/ADD_POKEMONS';
 const NEXT_URL = 'pokemons/NEXT_URL';
 const PREV_URL = 'pokemons/PREV_URL';
+const ABILITY_NAME = 'pokemons/ABILITY_NAME';
+const ABILITY_INFO = 'pokemons/ABILITY_INFO';
+const POKEMON_ID = 'pokemons/POKEMON_ID';
 const SHOW_LOADER = 'pokemons/SHOW_LOADER';
 const HIDE_LOADER = 'pokemons/HIDE_LOADER';
 
@@ -12,6 +15,9 @@ const initialState = {
   pokemons: [],
   prevUrl: '',
   nextUrl: '',
+  abilityName: '',
+  abilityInfo: [],
+  pokemonId: '',
   isLoading: false,
 };
 
@@ -23,6 +29,12 @@ export const pokemonsReducer = (state = initialState, action) => {
       return { ...state, prevUrl: action.payload };
     case NEXT_URL:
       return { ...state, nextUrl: action.payload };
+    case ABILITY_NAME:
+      return { ...state, abilityName: action.payload };
+    case ABILITY_INFO:
+      return { ...state, abilityInfo: action.payload };
+    case POKEMON_ID:
+      return { ...state, pokemonId: action.payload };
     case SHOW_LOADER:
       return { ...state, isLoading: true };
     case HIDE_LOADER:
@@ -45,6 +57,21 @@ export const getPrevUrl = str => ({
 
 export const getNextUrl = str => ({
   type: NEXT_URL,
+  payload: str,
+});
+
+export const getAbilityName = str => ({
+  type: ABILITY_NAME,
+  payload: str,
+});
+
+const abilityInfo = arr => ({
+  type: ABILITY_INFO,
+  payload: arr,
+});
+
+export const getPokemonId = str => ({
+  type: POKEMON_ID,
   payload: str,
 });
 
@@ -80,4 +107,10 @@ export const getPokemons = url => async dispatch => {
   dispatch(addPokemons(pokemon));
 
   dispatch(hideLoader());
+};
+
+export const getAbilityInfo = url => async dispatch => {
+  const data = await pokemonsAPI.fetchAbilityInfo(url);
+
+  dispatch(abilityInfo(data.effect_entries));
 };

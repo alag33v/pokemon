@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 import logo from './assets/images/logo.png';
-import { PokemonItem } from './components';
+import { PokemonItem, PokemonAbility } from './components';
 import { Home } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { StyledApp } from './styles/StyledApp';
@@ -20,6 +20,7 @@ export const App = () => (
       <Switch>
         <Route exact path="/pokemon" component={Home} />
         <Route exact path="/pokemon/:id" component={PokemonItem} />
+        <Route exact path="/ability" component={PokemonAbility} />
       </Switch>
     </StyledApp>
   </Router>

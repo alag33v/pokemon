@@ -36,6 +36,7 @@ export const approachItem = {
   exit: {
     opacity: 0,
     scale: 0.4,
+    translateX: 500,
     transition: {
       duration: 1,
     },
@@ -59,8 +60,51 @@ export const approachInfo = {
   exit: {
     opacity: 0,
     scale: 0.4,
+    translateX: -500,
     transition: {
       duration: 1,
+    },
+  },
+};
+
+export const aboveTitle = {
+  hidden: {
+    opacity: 0,
+    translateY: -500,
+  },
+  show: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+  exit: {
+    opacity: 0,
+    translateY: -500,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+export const aboveText = {
+  hidden: {
+    opacity: 0,
+    translateY: -500,
+  },
+  show: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      duration: 0.8,
+    },
+  },
+  exit: {
+    opacity: 0,
+    translateY: -500,
+    transition: {
+      duration: 0.8,
     },
   },
 };

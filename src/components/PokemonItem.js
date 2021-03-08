@@ -2,19 +2,28 @@ import React from 'react';
 
 import { motion } from 'framer-motion';
 import { BiArrowBack } from 'react-icons/bi';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { approachItem, approachInfo } from '../assets/animations/animations';
+import { getAbilityName, getAbilityInfo, getPokemonId } from '../redux/ducks/pokemonsDucks';
 import { StyledPokemonItem } from '../styles/components/StyledPokemonItem';
 
 const PokemonItem = ({ match }) => {
   const { pokemons } = useSelector(state => state.pokemons);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const pokemonsFilter = pokemons.filter(pokemon => pokemon.id === +match.params.id);
 
   const pokemon = pokemonsFilter[0];
+
+  const onAbilityInfo = ability => {
+    dispatch(getAbilityName(ability.name));
+    dispatch(getAbilityInfo(ability.url));
+    dispatch(getPokemonId(match.params.id));
+    history.push('/ability');
+  };
 
   const onComeBack = () => {
     history.push('/pokemon');
@@ -37,7 +46,9 @@ const PokemonItem = ({ match }) => {
           <h3 className="title">Abilities:</h3>
           <ul>
             {pokemon.abilities.map(ability => (
-              <li key={ability.ability.name}>{ability.ability.name}</li>
+              <li className="ability" onClick={() => onAbilityInfo(ability.ability)} key={ability.ability.name}>
+                {ability.ability.name}
+              </li>
             ))}
           </ul>
           <h3 className="title">Types:</h3>
